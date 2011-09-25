@@ -6,7 +6,7 @@ Summary:	C# Mono Qt4 bindings
 Summary(pl.UTF-8):	Dowiązania C# Mono dla Qt4
 Name:		qyoto
 Version:	4.7.1
-Release:	0.1
+Release:	1
 License:	GPL v2+
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
@@ -14,12 +14,11 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version
 URL:		http://www.kde.org/
 BuildRequires:	kde4-kdelibs-devel
 BuildRequires:	mono-csharp
-BuildRequires:	monodoc
 BuildRequires:	phonon-devel
 BuildRequires:	qimageblitz-devel
 BuildRequires:	qscintilla2-devel
 BuildRequires:	smokeqt-devel
-Obsoletes:	kde4-kdebindings-qyoto < 4.7.0
+Obsoletes:	kde4-kdebindings-qyoto < 4.6.100
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -74,6 +73,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libqtuitools-sharp.so
 %attr(755,root,root) %{_libdir}/libqtwebkit-sharp.so
 %attr(755,root,root) %{_libdir}/libqscintilla-sharp.so
+%dir %{_prefix}/lib/mono/qyoto
 %{_prefix}/lib/mono/qyoto/phonon.dll
 %{_prefix}/lib/mono/qyoto/qscintilla.dll
 %{_prefix}/lib/mono/qyoto/qt-dotnet.dll
