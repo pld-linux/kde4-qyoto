@@ -5,19 +5,19 @@
 Summary:	C# Mono Qt4 bindings
 Summary(pl.UTF-8):	Dowiązania C# Mono dla Qt4
 Name:		qyoto
-Version:	4.7.1
+Version:	4.7.3
 Release:	1
 License:	GPL v2+
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	7c81786e0f80353d8fd7e11ce4471272
+# Source0-md5:	4dd915a5a012d33860dc520e570be15e
 URL:		http://www.kde.org/
 BuildRequires:	kde4-kdelibs-devel
 BuildRequires:	mono-csharp
 BuildRequires:	phonon-devel
 BuildRequires:	qimageblitz-devel
 BuildRequires:	qscintilla2-devel
-BuildRequires:	smokeqt-devel
+BuildRequires:	smokeqt-devel >= %{version}
 Obsoletes:	kde4-kdebindings-qyoto < 4.6.100
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
