@@ -1,24 +1,25 @@
 %define         _state          stable
 %define         orgname         qyoto
-%define         qtver           4.7.4
+%define         qtver           4.8.0
 
 Summary:	C# Mono Qt4 bindings
 Summary(pl.UTF-8):	Dowiązania C# Mono dla Qt4
-Name:		qyoto
-Version:	4.7.3
+Name:		kde4-qyoto
+Version:	4.8.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	4dd915a5a012d33860dc520e570be15e
+# Source0-md5:	24a3727bdde0f54aff05825d0cc64cd4
 URL:		http://www.kde.org/
 BuildRequires:	kde4-kdelibs-devel
 BuildRequires:	mono-csharp
 BuildRequires:	phonon-devel
 BuildRequires:	qimageblitz-devel
 BuildRequires:	qscintilla2-devel
-BuildRequires:	smokeqt-devel >= %{version}
+BuildRequires:	kde4-smokeqt-devel >= %{version}
 Obsoletes:	kde4-kdebindings-qyoto < 4.6.100
+Obsoletes:	qyoto <= 4.8.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -33,6 +34,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki %{name}
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Obsoletes:	kde4-kdebindings-qyoto-devel < 4.7.0
+Obsoletes:	qyoto-devel <= 4.8.0
 
 %description devel
 Header files for %{name} library.
@@ -41,7 +43,7 @@ Header files for %{name} library.
 Pliki nagłówkowe biblioteki %{name}.
 
 %prep
-%setup -q
+%setup -q -n %{orgname}-%{version}
 
 %build
 install -d build
