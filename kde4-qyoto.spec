@@ -5,12 +5,12 @@
 Summary:	C# Mono Qt4 bindings
 Summary(pl.UTF-8):	Dowiązania C# Mono dla Qt4
 Name:		kde4-qyoto
-Version:	4.9.3
+Version:	4.9.4
 Release:	1
 License:	GPL v2+
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.xz
-# Source0-md5:	4d38900f424570dd28d19122dd66505a
+# Source0-md5:	eefeae183ef4c84948c4eb4623341fd7
 URL:		http://www.kde.org/
 BuildRequires:	kde4-kdelibs-devel
 BuildRequires:	mono-csharp
