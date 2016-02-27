@@ -1,0 +1,53 @@
+--- qyoto-4.14.3/cmake/FindMono.cmake~	2013-06-01 23:29:59.000000000 +0200
++++ qyoto-4.14.3/cmake/FindMono.cmake	2016-02-27 16:47:23.276357053 +0100
+@@ -1,10 +1,11 @@
+-# - Try to find the mono, mcs, gmcs and gacutil
++# - Try to find the mono, mcs, gmcs or dmcs and gacutil
+ #
+ # defines
+ #
+ # MONO_FOUND - system has mono, mcs, gmcs and gacutil
+ # MONO_PATH - where to find 'mono'
+ # GMCS_PATH - where to find 'gmcs'
++# DMCS_PATH - where to find 'gmcs'
+ # GACUTIL_PATH - where to find 'gacutil'
+ #
+ # copyright (c) 2007 Arno Rehn arno@arnorehn.de
+@@ -13,17 +14,21 @@
+ 
+ FIND_PROGRAM (MONO_EXECUTABLE mono)
+ FIND_PROGRAM (GMCS_EXECUTABLE gmcs)
++FIND_PROGRAM (DMCS_EXECUTABLE dmcs)
+ FIND_PROGRAM (GACUTIL_EXECUTABLE gacutil)
+ 
+ SET (MONO_FOUND FALSE CACHE INTERNAL "")
+ 
+-IF (MONO_EXECUTABLE AND GMCS_EXECUTABLE AND GACUTIL_EXECUTABLE)
+-	SET (MONO_FOUND TRUE CACHE INTERNAL "")
+-ENDIF (MONO_EXECUTABLE AND GMCS_EXECUTABLE AND GACUTIL_EXECUTABLE)
++IF (MONO_EXECUTABLE AND GACUTIL_EXECUTABLE)
++	IF (GMCS_EXECUTABLE OR DMCS_EXECUTABLE)
++		SET (MONO_FOUND TRUE CACHE INTERNAL "")
++	ENDIF (GMCS_EXECUTABLE OR DMCS_EXECUTABLE)
++ENDIF (MONO_EXECUTABLE AND GACUTIL_EXECUTABLE)
+ 
+ IF (NOT Mono_FIND_QUIETLY)
+     MESSAGE(STATUS "Path of mono: ${MONO_EXECUTABLE}")
+     MESSAGE(STATUS "Path of gmcs: ${GMCS_EXECUTABLE}")
++    MESSAGE(STATUS "Path of dmcs: ${DMCS_EXECUTABLE}")
+     MESSAGE(STATUS "Path of gacutil: ${GACUTIL_EXECUTABLE}")
+ ENDIF (NOT Mono_FIND_QUIETLY)
+ 
+--- qyoto-4.14.3/cmake/CMakeDetermineCSharpCompiler.cmake~	2013-06-01 23:29:59.000000000 +0200
++++ qyoto-4.14.3/cmake/CMakeDetermineCSharpCompiler.cmake	2016-02-27 16:48:48.900692308 +0100
+@@ -24,6 +24,10 @@
+         find_package(Mono)
+         set (CMAKE_CSharp_COMPILER "${GMCS_EXECUTABLE}")
+ 
++        if (NOT CMAKE_CSharp_COMPILER)
++            set (CMAKE_CSharp_COMPILER "${DMCS_EXECUTABLE}")
++        endif (NOT CMAKE_CSharp_COMPILER)
++
+         # still not found, try csc.exe
+         if (NOT CMAKE_CSharp_COMPILER)
+             get_filename_component(dotnet_path "[HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\.NETFramework;InstallRoot]" PATH)
